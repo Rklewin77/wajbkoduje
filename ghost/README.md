@@ -31,23 +31,32 @@ Różnica jak między wzięciem cukierka od obcego a przeczytaniem składu.)*
 
 ---
 
-## Instalacja (2 minuty)
+## Instalacja (30 sekund, jedno przeciągnięcie)
 
-1. Otwórz swój folder roboczy (ten sam, w którym masz plik CLAUDE.md z odcinka 1).
-2. Zrób w nim folder `.claude`, a w środku folder `skills` (jeśli jeszcze ich nie masz).
-3. Przeciągnij folder **`ghost`** z tej paczki do `.claude\skills`.
+1. Otwórz swój folder roboczy — ten, w którym rozmawiasz z AI.
+2. Przeciągnij do niego folder **`.claude`** z tej paczki. To wszystko.
 
 Powinno wyjść tak:
 
 ```
 Twój-folder\
-  CLAUDE.md
-  .claude\
+  CLAUDE.md          ← to, co już masz
+  .claude\           ← to przeciągnąłeś
     skills\
       ghost\
         SKILL.md
         profil-komunikacji.md
 ```
+
+**Masz już folder `.claude`?** Windows zapyta, czy połączyć foldery — kliknij tak.
+Nic Ci nie skasuje, ghost po prostu dołączy do reszty.
+
+**Nie widzisz folderu `.claude` w paczce?** Jest tam na pewno — po prostu nazwy
+zaczynające się od kropki bywają ukryte. W Eksploratorze: zakładka **Wyświetl** →
+**Pokaż** → **Ukryte elementy**.
+
+> ⚠️ Nie próbuj tworzyć folderu `.claude` ręcznie w Eksploratorze Windows — nie pozwoli
+> Ci zapisać nazwy zaczynającej się od kropki. Dlatego dostajesz go gotowego.
 
 ## Pierwsze uruchomienie — nakarm ducha
 
