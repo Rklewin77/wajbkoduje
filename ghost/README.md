@@ -60,8 +60,10 @@ Ghost na start jest pusty: zna przepis na pisanie, ale nie zna Ciebie.
 4. Otwórz `profil-komunikacji.md` i przeczytaj. Coś nie pasuje? Popraw ręcznie —
    to zwykły plik tekstowy. Im częściej poprawiasz, tym bardziej jest Twój.
 
-Chcesz najpierw potestować bez własnych maili? W folderze `przyklady\` są trzy
-przykładowe (fikcyjne) — te same, których używam w odcinku.
+Chcesz najpierw potestować bez własnych maili? W folderze `przyklady\` są cztery
+przykładowe (fikcyjne) — te same, których używam w odcinku. Trzy do obcych firm
+i jedna luźna do znajomego, bo dopiero z takiej mieszanki widać, że piszesz
+inaczej do urzędu, a inaczej do kumpla.
 
 ## Jak używać na co dzień
 
