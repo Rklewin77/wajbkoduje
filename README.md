@@ -35,6 +35,7 @@ Różnica jak między wzięciem cukierka od obcego a przeczytaniem składu.
 | Folder | Co to robi | Odcinek |
 |---|---|---|
 | [`ghost/`](ghost/) | AI pisze maile i wiadomości **twoim** stylem, a nie jak robot | „Nauczyłem AI pisać jak ja" |
+| [`handoff/`](handoff/) | Kończysz rozmowę tak, żeby nowa wiedziała, na czym stanęliście — mniej zużytego limitu | „Znowu masz limit" |
 
 Każdy folder ma własny `README.md` z instrukcją krok po kroku.
 
