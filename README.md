@@ -36,6 +36,7 @@ Różnica jak między wzięciem cukierka od obcego a przeczytaniem składu.
 |---|---|---|
 | [`ghost/`](ghost/) | AI pisze maile i wiadomości **twoim** stylem, a nie jak robot | „Nauczyłem AI pisać jak ja" |
 | [`handoff/`](handoff/) | Kończysz rozmowę tak, żeby nowa wiedziała, na czym stanęliście — mniej zużytego limitu | „Znowu masz limit" |
+| [`krotko/`](krotko/) | Jedno słowo i z długiej odpowiedzi AI zostaje kilka zdań po ludzku | „AI gada za dużo" |
 
 Każdy folder ma własny `README.md` z instrukcją krok po kroku.
 
