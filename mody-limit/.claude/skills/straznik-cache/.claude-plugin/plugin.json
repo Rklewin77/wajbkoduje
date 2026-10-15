@@ -1,0 +1,6 @@
+{
+  "name": "straznik-cache",
+  "version": "0.1.0",
+  "description": "Pasek nad promptem: kontekst, odliczanie cache, koszt sesji, przyciski Handoff i Wyczyść i kontynuuj",
+  "types": "./types/index.d.ts"
+}

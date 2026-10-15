@@ -1,0 +1,6 @@
+{
+  "name": "dieta-wyjsc",
+  "version": "0.1.0",
+  "description": "Przycina ogromne wyniki Basha, PowerShella i MCP do początku, końca i linijek z błędami; pełny wynik zapisuje do pliku",
+  "types": "./types/index.d.ts"
+}

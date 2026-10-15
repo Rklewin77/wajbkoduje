@@ -1,0 +1,5 @@
+{
+  "name": "straznik-petli",
+  "version": "0.1.0",
+  "description": "Po 3 takich samych błędach narzędzia z rzędu zatrzymuje Claude'a i pyta, co dalej"
+}
