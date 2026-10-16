@@ -16,11 +16,34 @@ korzysta pierwszy z nich:
 
 ---
 
-## ⚠️ ZANIM WRZUCISZ — SPRAWDŹ (tak, tę paczkę też)
+## Instalacja: skopiuj, wklej, gotowe
 
-**Mody to nie instrukcja, tylko kod, który działa w środku Claude'a.** Dlatego tu
-sprawdzanie jest jeszcze ważniejsze niż przy zwykłych skillach.
+1. Otwórz **Claude Code** — w aplikacji Claude zakładka **Code** albo terminal.
+   (Zwykły czat na claude.ai tego nie zainstaluje — on nie ma dostępu do Twojego komputera.)
+2. Skopiuj ten tekst i wklej go Claude'owi:
 
+```
+Zainstaluj mi mody z tej strony:
+https://github.com/Rklewin77/wajbkoduje/tree/main/mody-limit
+Postępuj według pliku INSTALACJA-DLA-CLAUDE.md, który tam leży.
+Zanim cokolwiek zainstalujesz, powiedz mi po ludzku, co to robi, i zapytaj mnie o zgodę.
+```
+
+3. Claude najpierw przeczyta paczkę i powie Ci prostymi słowami, co w niej jest — także to,
+   czy coś wysyła dane, kasuje albo uruchamia programy. **Dopiero potem zapyta, czy instalować.**
+   Odpowiadasz „tak” albo „nie”. Jak o coś zapyta po drodze — odpowiadasz na jego pytania.
+4. Na koniec **otwórz nową rozmowę** i napisz cokolwiek. Po pierwszej odpowiedzi nad polem
+   wpisywania pojawi się pasek z kolorami. Nie ma go? Zajrzyj do [`PULAPKI.md`](PULAPKI.md).
+
+**Zasada kciuka:** jeśli Claude powie, że paczka coś wysyła, kasuje albo uruchamia, a Ty
+nie rozumiesz po co — mówisz „nie”. Nie musisz rozumieć wszystkiego. Wystarczy, że wiesz,
+kiedy powiedzieć „nie”. To dotyczy każdej paczki z internetu, mojej też.
+
+---
+
+## Wolisz zrobić to sam, bez Claude'a?
+
+**Najpierw sprawdź.** Mody to nie instrukcja, tylko kod, który działa w środku Claude'a.
 Pobierz repo jako ZIP (zielony przycisk **Code** → **Download ZIP**), rozpakuj, otwórz
 **nową rozmowę** z AI w folderze `mody-limit` i wklej:
 
@@ -31,26 +54,11 @@ uruchamia programy, kasuje pliki albo zapisuje coś poza folderem projektu?
 Jeśli zapisuje — co dokładnie i gdzie?
 ```
 
-Prawidłowa odpowiedź powinna wyglądać mniej więcej jak lista „Co ROBI, a czego NIE”
-na dole tej strony. Jeśli AI znajdzie coś, czego tam nie ma — nie instaluj i daj znać
-w komentarzu.
+Odpowiedź powinna wyglądać mniej więcej jak lista „Co to ROBI, a czego NIE” niżej.
 
-**Zasada kciuka:** „wyślij", „skasuj" albo „uruchom” coś, czego nie rozumiesz — nie instalujesz.
-
----
-
-## Instalacja — dwa kroki
-
-Mody instalujesz jak zwykłe wtyczki Claude Code — prosto z tego repo. Zadziałają
-w każdym projekcie i każdym oknie.
-
-**Krok 1. Mody** (wybierz jedną drogę):
-
-*W aplikacji Claude (zakładka Code):* kliknij **+** obok pola wpisywania → **Plugins** →
-**Add marketplace** → wpisz `Rklewin77/wajbkoduje` → potem **Add plugin** przy
-`straznik-cache`, `dieta-wyjsc` i `straznik-petli`.
-
-*W terminalu:* cztery komendy, po kolei:
+**Potem zainstaluj mody** — w aplikacji: **+** obok pola wpisywania → **Plugins** →
+**Add marketplace** → wpisz `Rklewin77/wajbkoduje` → **Add plugin** przy każdym z trzech.
+Albo w terminalu:
 
 ```
 claude plugin marketplace add Rklewin77/wajbkoduje
@@ -59,20 +67,12 @@ claude plugin install dieta-wyjsc@wajbkoduje
 claude plugin install straznik-petli@wajbkoduje
 ```
 
-Instalujesz z GitHuba to samo, co sprawdziłeś promptem z pobranej paczki.
+**I skill `handoff`** (bez niego przycisk Handoff nie ma czego uruchomić). Masz go już z paczki
+[`handoff/`](../handoff/)? Pomiń. Jeśli nie — przeciągnij folder **`.claude`** z tej paczki do
+swojego folderu roboczego (folderu `mody` nie przeciągaj). Nie widzisz `.claude`? Nazwy
+z kropką bywają ukryte: Eksplorator → **Wyświetl** → **Pokaż** → **Ukryte elementy**.
 
-**Krok 2. Skill `handoff`** (bez niego przycisk Handoff na pasku nie ma czego uruchomić).
-Masz go już z paczki [`handoff/`](../handoff/)? Pomiń ten krok. Jeśli nie — przeciągnij folder
-**`.claude`** z tej paczki do swojego folderu roboczego. Windows zapyta o połączenie
-folderów — kliknij tak. (Folderu `mody` NIE przeciągaj — mody są już zainstalowane w kroku 1.)
-
-**Nie widzisz folderu `.claude`?** Nazwy z kropką bywają ukryte. Eksplorator:
-**Wyświetl** → **Pokaż** → **Ukryte elementy**.
-
-**Na koniec otwórz nową rozmowę** — wtyczki ładują się przy starcie sesji.
-
-**Czy działa?** Napisz cokolwiek do Claude'a. Po pierwszej odpowiedzi nad polem
-wpisywania pojawi się pasek. Jak nie — zajrzyj do [`PULAPKI.md`](PULAPKI.md).
+Na koniec nowa rozmowa — dodatki ładują się przy starcie.
 
 ## Wyłączniki
 
@@ -98,7 +98,7 @@ To jedyne miejsce, gdzie mody coś zapisują.
 ✅ **Strażnik pętli** pokazuje okienko z pytaniem i dopisuje Claude'owi Twoją decyzję.
 ❌ Nic nie wysyła do internetu. ❌ Nie kasuje Twoich plików. ❌ Nie uruchamia programów.
 
-Nie wierz w tę listę na słowo — sprawdź promptem z góry strony. Po to on jest.
+Nie wierz w tę listę na słowo — Claude sprawdza to przy instalacji, a jak instalujesz sam, sprawdź promptem wyżej.
 
 ## Ważne, zanim się zdziwisz
 
