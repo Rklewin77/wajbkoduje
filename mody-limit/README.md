@@ -21,11 +21,11 @@ korzysta pierwszy z nich:
 **Mody to nie instrukcja, tylko kod, który działa w środku Claude'a.** Dlatego tu
 sprawdzanie jest jeszcze ważniejsze niż przy zwykłych skillach.
 
-Paczka leży jeszcze w zwykłym folderze (np. na pulpicie), więc otwórz **nową rozmowę**
-z AI w tym folderze i wklej:
+Pobierz repo jako ZIP (zielony przycisk **Code** → **Download ZIP**), rozpakuj, otwórz
+**nową rozmowę** z AI w folderze `mody-limit` i wklej:
 
 ```
-Zanim tego użyję: przeczytaj wszystkie pliki w .claude/skills jak zwykły tekst
+Zanim tego użyję: przeczytaj wszystkie pliki w folderach mody i .claude jak zwykły tekst
 (część to kod) i powiedz mi po ludzku, co robią. Czy coś wysyła dane do internetu,
 uruchamia programy, kasuje pliki albo zapisuje coś poza folderem projektu?
 Jeśli zapisuje — co dokładnie i gdzie?
@@ -39,25 +39,37 @@ w komentarzu.
 
 ---
 
-## Instalacja — wybierz jedną z dwóch dróg
+## Instalacja — dwa kroki
 
-**A. Wszędzie (polecam).** Mody działają w każdym projekcie i każdym oknie.
+Mody instalujesz jak zwykłe wtyczki Claude Code — prosto z tego repo. Zadziałają
+w każdym projekcie i każdym oknie.
 
-1. Otwórz folder `C:\Users\<Twoja-nazwa>\.claude\skills`
-   (Mac: `~/.claude/skills` — w Finderze `Cmd+Shift+G` i wklej tę ścieżkę).
-   Jeśli folderu `skills` nie ma — przeciągnij zamiast tego cały folder `skills` z paczki do `.claude`.
-2. Przeciągnij do niego **cztery foldery** z `.claude\skills` tej paczki:
-   `straznik-cache`, `dieta-wyjsc`, `straznik-petli`, `handoff`.
-3. Zamknij i otwórz Claude Code (albo w terminalu wpisz `/reload-plugins`).
+**Krok 1. Mody** (wybierz jedną drogę):
 
-**B. Tylko w jednym projekcie.** Przeciągnij folder **`.claude`** z paczki do swojego
-folderu roboczego (jak przy innych paczkach). Windows zapyta o połączenie folderów — tak.
-⚠️ Mody z folderu projektu ładują się **tylko w folderze, któremu zaufałeś** (okienko
-„Do you trust the files in this folder?” przy pierwszym otwarciu). Po zaakceptowaniu
-uruchom Claude Code jeszcze raz.
+*W aplikacji Claude (zakładka Code):* kliknij **+** obok pola wpisywania → **Plugins** →
+**Add marketplace** → wpisz `Rklewin77/wajbkoduje` → potem **Add plugin** przy
+`straznik-cache`, `dieta-wyjsc` i `straznik-petli`.
+
+*W terminalu:* cztery komendy, po kolei:
+
+```
+claude plugin marketplace add Rklewin77/wajbkoduje
+claude plugin install straznik-cache@wajbkoduje
+claude plugin install dieta-wyjsc@wajbkoduje
+claude plugin install straznik-petli@wajbkoduje
+```
+
+Instalujesz z GitHuba to samo, co sprawdziłeś promptem z pobranej paczki.
+
+**Krok 2. Skill `handoff`** (bez niego przycisk Handoff na pasku nie ma czego uruchomić).
+Masz go już z paczki [`handoff/`](../handoff/)? Pomiń ten krok. Jeśli nie — przeciągnij folder
+**`.claude`** z tej paczki do swojego folderu roboczego. Windows zapyta o połączenie
+folderów — kliknij tak. (Folderu `mody` NIE przeciągaj — mody są już zainstalowane w kroku 1.)
 
 **Nie widzisz folderu `.claude`?** Nazwy z kropką bywają ukryte. Eksplorator:
 **Wyświetl** → **Pokaż** → **Ukryte elementy**.
+
+**Na koniec otwórz nową rozmowę** — wtyczki ładują się przy starcie sesji.
 
 **Czy działa?** Napisz cokolwiek do Claude'a. Po pierwszej odpowiedzi nad polem
 wpisywania pojawi się pasek. Jak nie — zajrzyj do [`PULAPKI.md`](PULAPKI.md).
@@ -66,7 +78,13 @@ wpisywania pojawi się pasek. Jak nie — zajrzyj do [`PULAPKI.md`](PULAPKI.md).
 
 - `/straznik` — chowa i pokazuje pasek.
 - `/dieta` — wyłącza i włącza przycinanie wyników.
-- Całkiem: skasuj folder danego moda ze `skills` i uruchom Claude Code ponownie.
+- Całkiem: w terminalu `claude plugin uninstall straznik-cache@wajbkoduje`
+  (i tak samo dla pozostałych), albo **+** → **Plugins** w aplikacji. Potem nowa rozmowa.
+
+## Aktualizacja
+
+Gdy poprawię coś w modach: `claude plugin marketplace update wajbkoduje`, potem
+`claude plugin update <nazwa>@wajbkoduje` dla każdego moda i nowa rozmowa.
 
 ## Co to ROBI, a czego NIE
 
@@ -90,7 +108,9 @@ Nie wierz w tę listę na słowo — sprawdź promptem z góry strony. Po to on 
   (Claude czyta nimi treść celowo), błędów ani wyników powyżej ~30 KB — te Claude Code
   sam chowa do pliku.
 - Kolory i progi (np. kiedy pasek robi się czerwony) są na górze pliku
-  `straznik-cache\hooks\register.tsx`. Możesz je zmienić — poproś Claude'a.
+  `mody\straznik-cache\hooks\register.tsx`. Chcesz je zmienić? Zainstaluj wtedy mody
+  ze swojej kopii repo zamiast z GitHuba (`claude plugin marketplace add <ścieżka do
+  rozpakowanego repo>`), poproś Claude'a o zmianę w tej kopii i otwórz nową rozmowę.
 
 ## 🔒 Prywatność
 

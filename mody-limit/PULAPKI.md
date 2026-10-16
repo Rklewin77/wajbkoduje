@@ -10,21 +10,20 @@ desktopowa). Jeśli coś nie działa, przejdź listę od góry.
 2. **Pasek chowa się, gdy aplikacja pokazuje ankietę „How is Claude doing”** — to samo
    miejsce. Odpowiedz albo zamknij ankietę.
 3. **Schowałeś go komendą `/straznik`?** Wpisz ją jeszcze raz.
-4. **Mod nie załadował się w ogóle.** W terminalu w folderze projektu wpisz
-   `claude plugin list` i poszukaj `straznik-cache@skills-dir` ze statusem `loaded`.
-   - Widzisz „skipped because this workspace was not trusted” → instalowałeś drogą B
-     (do projektu), a folder nie jest zaufany. Otwórz w nim Claude Code, zaakceptuj
-     okienko zaufania i uruchom jeszcze raz. Albo zainstaluj drogą A (do folderu domowego).
-   - Nie ma go na liście → folder moda leży w złym miejscu. Musi być dokładnie
-     `...\.claude\skills\straznik-cache\` (a w nim `.claude-plugin`, `hooks`, `types`),
-     nie `...\skills\mody-limit\.claude\skills\...`.
-5. **Inna wersja Claude Code.** Mody są „early access” — mogą się zmienić bez ostrzeżenia.
+4. **Nie otworzyłeś nowej rozmowy po instalacji.** Wtyczki ładują się przy starcie sesji.
+5. **Mod nie załadował się w ogóle.** W terminalu wpisz `claude plugin list` i poszukaj
+   `straznik-cache@wajbkoduje` ze statusem `enabled`. Nie ma go → wróć do kroku 1 instalacji.
+6. **Wrzuciłeś mody ręcznie do `.claude\skills`?** Autor też tak zrobił na początku:
+   `claude plugin list` pisał „loaded”, a po restarcie komputera aplikacja desktopowa
+   paska nie pokazała. Działa dopiero instalacja jako wtyczka (krok 1 w README).
+   Skasuj ręczne kopie modów ze `skills`, żeby nie działały podwójnie.
+7. **Inna wersja Claude Code.** Mody są „early access” — mogą się zmienić bez ostrzeżenia.
    Zaktualizuj Claude Code; jeśli to nie pomaga, napisz w komentarzu, jaką masz wersję
    (`claude --version`).
 
 ## Przycisk Handoff nic nie robi / nie zmienia się na „Wyczyść i kontynuuj”
 
-- **Potrzebny jest skill `handoff`** — jest w tej paczce. Bez niego przycisk nie ma czego
+- **Potrzebny jest skill `handoff`** — jest w tej paczce (krok 2 instalacji). Bez niego przycisk nie ma czego
   uruchomić (pojawi się dymek „wpisz /handoff ręcznie”).
 - Przycisk zmienia się dopiero, gdy **kartka faktycznie powstanie** i Claude skończy
   odpowiedź. Mod szuka nowego pliku `.md` w `handoff\` projektu i w `.claude\handoff`

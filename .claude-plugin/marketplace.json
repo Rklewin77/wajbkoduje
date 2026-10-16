@@ -1,0 +1,21 @@
+{
+  "name": "wajbkoduje",
+  "owner": { "name": "Radek Wajbkoduje" },
+  "plugins": [
+    {
+      "name": "straznik-cache",
+      "source": "./mody-limit/mody/straznik-cache",
+      "description": "Pasek nad polem wpisywania: kontekst, cache i limit 5h w kolorach + przyciski Handoff i Wyczyść i kontynuuj"
+    },
+    {
+      "name": "dieta-wyjsc",
+      "source": "./mody-limit/mody/dieta-wyjsc",
+      "description": "Przycina ogromne wyniki narzędzi do początku, końca i linijek z błędami; całość chowa do pliku"
+    },
+    {
+      "name": "straznik-petli",
+      "source": "./mody-limit/mody/straznik-petli",
+      "description": "Po 3 takich samych błędach z rzędu zatrzymuje Claude'a i pyta Cię, co dalej"
+    }
+  ]
+}
