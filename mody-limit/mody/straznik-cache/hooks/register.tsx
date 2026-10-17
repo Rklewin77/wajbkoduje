@@ -33,6 +33,14 @@ const thousands = (tokens: number) => `${Math.round(tokens / 1000)}k`
 
 export const register: Register = on => {
   on('session.start', async ($, e, next) => {
+    // Nowy proces wznowionej sesji: $.state jest pusty, ale cache na serwerze żyje dalej.
+    if ((await read($, lastActivity)) === null) {
+      const saved = await recallLastAnswer($)
+      if (saved !== null) {
+        await update($, lastActivity, () => saved)
+      }
+    }
+
     await $.command.register({
       name: 'straznik',
       description: 'Pokaż albo schowaj pasek Strażnika cache',
@@ -85,6 +93,7 @@ export const register: Register = on => {
     const now = await $.clock.now()
     await update($, lastActivity, () => now)
     await update($, isWarned, () => false)
+    await rememberLastAnswer($, now)
 
     const pending = await read($, handoff)
     if (pending !== null && pending.file === null) {
@@ -103,14 +112,12 @@ export const register: Register = on => {
     }
 
     await read($, tick)
+    // last === null: sesja jeszcze bez odpowiedzi — pasek już jest, ale cache nie liczy.
     const last = await read($, lastActivity)
-    if (last === null) {
-      return next(e)
-    }
 
     const { Box, Button, Text } = $.ui.resolve(e)
     const { context, cost, rateLimits } = await $.session.usage()
-    const left = last + CACHE_TTL_MS - (await $.clock.now())
+    const left = last === null ? 0 : last + CACHE_TTL_MS - (await $.clock.now())
     const pending = await read($, handoff)
 
     // level === undefined: kawałek bez koloru (koszt sesji), przygaszony.
@@ -121,13 +128,17 @@ export const register: Register = on => {
         level: byPercent(context.percent, CONTEXT_ORANGE_PERCENT, CONTEXT_RED_PERCENT),
       })
     }
-    parts.push({
-      text:
-        left > 0
-          ? `cache ${Math.ceil(left / MINUTE_MS)} min`
-          : 'cache wygasł — następna wiadomość czyta wszystko od nowa',
-      level: byTimeLeft(left),
-    })
+    parts.push(
+      last === null
+        ? { text: 'cache ruszy po pierwszej odpowiedzi' }
+        : {
+            text:
+              left > 0
+                ? `cache ${Math.ceil(left / MINUTE_MS)} min`
+                : 'cache wygasł — następna wiadomość czyta wszystko od nowa',
+            level: byTimeLeft(left),
+          },
+    )
     if (cost !== undefined) {
       parts.push({ text: `sesja $${cost.usd.toFixed(2)}` })
     }
@@ -149,7 +160,7 @@ export const register: Register = on => {
               : <Text color={part.level}>{part.text}</Text>,
           ])}{' '}
         </Text>
-        {!e.props.isWorking && pending?.file == null && (
+        {!e.props.isWorking && last !== null && pending?.file == null && (
           <Button
             key="handoff"
             label="Handoff"
@@ -166,6 +177,34 @@ export const register: Register = on => {
       </Box>
     )
   })
+}
+
+// $.state ginie razem z procesem, a aplikacja usypia nieużywane sesje i budzi je
+// nowym procesem. Dlatego czas ostatniej odpowiedzi każdej sesji trzymamy też
+// w $.store; wpisy starsze niż cache i tak nic już nie mówią, więc je sprzątamy.
+const LAST_ANSWERS_KEY = 'ostatniaOdpowiedz'
+
+// Zapis to dodatek: gdy store albo id sesji zawiodą, pasek działa dalej jak dotąd.
+async function savedAnswers($: EngineInterface): Promise<Record<string, number>> {
+  const saved = await $.store.get(LAST_ANSWERS_KEY)
+  return typeof saved === 'object' && saved !== null ? (saved as Record<string, number>) : {}
+}
+
+async function rememberLastAnswer($: EngineInterface, now: number) {
+  try {
+    const id = await $.session.id()
+    const fresh = Object.entries(await savedAnswers($)).filter(([, at]) => now - at < CACHE_TTL_MS)
+    await $.store.set(LAST_ANSWERS_KEY, { ...Object.fromEntries(fresh), [id]: now })
+  } catch {}
+}
+
+async function recallLastAnswer($: EngineInterface): Promise<number | null> {
+  try {
+    const id = await $.session.id()
+    return (await savedAnswers($))[id] ?? null
+  } catch {
+    return null
+  }
 }
 
 // Ustawiane przez session.end, gdy /clear naprawdę wyczyścił rozmowę.

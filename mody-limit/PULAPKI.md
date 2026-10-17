@@ -3,10 +3,22 @@
 Zebrane 15.10.2026 przy budowaniu tych modów na Claude Code 2.1.299 (Windows, aplikacja
 desktopowa). Jeśli coś nie działa, przejdź listę od góry.
 
+## Claude nie zainstalował wszystkiego sam
+
+Sprawdzone 17.10.2026 na świeżym koncie Windows (aplikacja desktopowa): mody działają,
+ale część kroków trzeba było zrobić ręcznie — **dodać wtyczki** i **zainstalować skill
+`handoff` przez PowerShell**. To normalne: zależnie od wersji i ustawień Claude nie
+zawsze może zrobić to za Ciebie.
+
+Wtedy napisz mu: **„Poprowadź mnie krok po kroku według INSTALACJA-DLA-CLAUDE.md —
+co mam kliknąć albo wpisać sam?”**. Wszystko, czego potrzebuje, jest w tym repo.
+Ręczna droga jest też w README, w części „Wolisz zrobić to sam”.
+
 ## Nie widzę paska
 
-1. **Pasek pojawia się dopiero po pierwszej odpowiedzi Claude'a.** Mod musi zobaczyć
-   jedną skończoną turę, żeby wiedzieć, od kiedy liczyć cache. Napisz „cześć” i poczekaj.
+1. **Pasek jest, ale pisze „cache ruszy po pierwszej odpowiedzi”?** Tak ma być: mod musi
+   zobaczyć jedną skończoną turę, żeby wiedzieć, od kiedy liczyć cache. Napisz „cześć” i poczekaj.
+   Przycisk Handoff też pojawia się dopiero wtedy.
 2. **Pasek chowa się, gdy aplikacja pokazuje ankietę „How is Claude doing”** — to samo
    miejsce. Odpowiedz albo zamknij ankietę.
 3. **Schowałeś go komendą `/straznik`?** Wpisz ją jeszcze raz.

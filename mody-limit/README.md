@@ -32,8 +32,12 @@ Zanim cokolwiek zainstalujesz, powiedz mi po ludzku, co to robi, i zapytaj mnie 
 3. Claude najpierw przeczyta paczkę i powie Ci prostymi słowami, co w niej jest — także to,
    czy coś wysyła dane, kasuje albo uruchamia programy. **Dopiero potem zapyta, czy instalować.**
    Odpowiadasz „tak” albo „nie”. Jak o coś zapyta po drodze — odpowiadasz na jego pytania.
-4. Na koniec **otwórz nową rozmowę** i napisz cokolwiek. Po pierwszej odpowiedzi nad polem
-   wpisywania pojawi się pasek z kolorami. Nie ma go? Zajrzyj do [`PULAPKI.md`](PULAPKI.md).
+4. Na koniec **otwórz nową rozmowę**. Nad polem wpisywania od razu pojawi się pasek; kolory
+   cache ruszą po pierwszej odpowiedzi Claude'a. Nie ma go? Zajrzyj do [`PULAPKI.md`](PULAPKI.md).
+
+**Coś wygląda inaczej niż tutaj?** Napisz Claude'owi: „Poprowadź mnie krok po kroku
+według INSTALACJA-DLA-CLAUDE.md — co mam kliknąć albo wpisać sam?”. W tym repo jest
+wszystko, czego potrzebuje, żeby Cię przez to przeprowadzić.
 
 **Zasada kciuka:** jeśli Claude powie, że paczka coś wysyła, kasuje albo uruchamia, a Ty
 nie rozumiesz po co — mówisz „nie”. Nie musisz rozumieć wszystkiego. Wystarczy, że wiesz,

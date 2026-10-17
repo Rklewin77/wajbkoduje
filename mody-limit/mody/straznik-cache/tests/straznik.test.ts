@@ -28,7 +28,9 @@ test('pasek odlicza cache po turze i ostrzega 5 min przed końcem', async ($, on
 
   for (const surface of ['terminal', 'desktop'] as const) {
     const ui = await $.ui.mount({ ...BAND, surface })
-    expect(await ui.find({ type: 'Text', text: /cache/ })).toBeUndefined()
+    const line = await ui.find({ type: 'Text', text: /cache ruszy po pierwszej odpowiedzi/ })
+    expect(line?.text).toContain('kontekst 45% (90k)')
+    expect(await ui.find({ key: 'handoff' })).toBeUndefined()
     await ui.unmount()
   }
 
@@ -133,6 +135,38 @@ test('Handoff: kartka w folderze projektu → „Wyczyść i kontynuuj” kopiuj
   await after.press({ key: 'clear' })
   expect(copies[0]).toBe('Przeczytaj `handoff/2026-10-15-mody.md` i wracamy do roboty.')
   await after.unmount()
+})
+
+// Aplikacja usypia nieużywaną sesję i budzi ją nowym procesem: $.state jest wtedy pusty,
+// a cache na serwerze wciąż żyje. Czas ostatniej odpowiedzi musi przetrwać w $.store.
+test('po wznowieniu sesji (nowy proces) pasek pamięta ostatnią odpowiedź', async ($, on) => {
+  mock.clock(on, { now: 1_000_000 + 10 * MINUTE })
+  mock.store(on, { ostatniaOdpowiedz: { 'sesja-1': 1_000_000 } })
+  beneath(on)
+  on('session.id', () => ({ value: 'sesja-1' }))
+  on('session.usage', () => ({ value: { startedAt: 0, context: { window: 200_000 }, rateLimits: [] } }))
+
+  await $.session.start({ cwd: '.', surface: 'desktop', isInteractive: true })
+
+  const ui = await $.ui.mount({ ...BAND, surface: 'desktop' })
+  expect(await ui.find({ type: 'Text', text: /cache 50 min/ })).toBeDefined()
+  expect(await ui.find({ key: 'handoff' })).toBeDefined()
+  await ui.unmount()
+})
+
+test('odpowiedź zapisuje czas sesji w store i sprząta wpisy starsze niż cache', async ($, on) => {
+  const clock = mock.clock(on, { now: 5_000_000 })
+  const store = new Map<string, unknown>([['ostatniaOdpowiedz', { stara: 5_000_000 - 61 * MINUTE, swieza: 5_000_000 - 5 * MINUTE }]])
+  on('store.get', ($, e) => ({ value: store.get(e.key) }))
+  on('store.set', ($, e) => (store.set(e.key, e.value), { value: undefined }))
+  beneath(on)
+  on('session.id', () => ({ value: 'sesja-2' }))
+  on('session.usage', () => ({ value: { startedAt: 0, context: { window: 200_000 }, rateLimits: [] } }))
+
+  await $.session.start({ cwd: '.', surface: 'desktop', isInteractive: true })
+  await $.turn.complete({ answer: 'ok', reason: 'answer', durationMs: 1, isAborted: false, turnId: 't1' })
+
+  expect(store.get('ostatniaOdpowiedz')).toEqual({ swieza: 5_000_000 - 5 * MINUTE, 'sesja-2': clock.now() })
 })
 
 test('/straznik chowa i pokazuje pasek', async ($, on) => {

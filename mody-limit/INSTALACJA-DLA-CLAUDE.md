@@ -85,8 +85,8 @@ czy tylko w tym folderze?” i skopiuj `mody-limit/.claude/skills/handoff/SKILL.
 Powiedz użytkownikowi, krótko:
 
 1. **Otwórz nową rozmowę** — dodatki ładują się przy starcie.
-2. Napisz w niej cokolwiek. **Po pierwszej odpowiedzi** nad polem wpisywania pojawi się pasek
-   z kolorami: zielony = spoko, pomarańczowy = uważaj, czerwony = czas na przycisk Handoff.
+2. Nad polem wpisywania od razu pojawi się pasek. Napisz cokolwiek — **po pierwszej odpowiedzi**
+   ruszą kolory: zielony = spoko, pomarańczowy = uważaj, czerwony = czas na przycisk Handoff.
 3. `/straznik` chowa pasek, `/dieta` wyłącza przycinanie.
 4. Coś nie działa → plik `PULAPKI.md` w paczce (możesz go streścić, jeśli zapyta).
 
