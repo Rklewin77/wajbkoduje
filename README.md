@@ -38,6 +38,7 @@ Różnica jak między wzięciem cukierka od obcego a przeczytaniem składu.
 | [`handoff/`](handoff/) | Kończysz rozmowę tak, żeby nowa wiedziała, na czym stanęliście — mniej zużytego limitu | „Znowu masz limit" |
 | [`krotko/`](krotko/) | Jedno słowo i z długiej odpowiedzi AI zostaje kilka zdań po ludzku | „AI gada za dużo" |
 | [`mody-limit/`](mody-limit/) | Trzech pomocników w Claude Code: pasek zużycia w kolorach, przycinanie gadatliwych wyników, stop dla AI kręcącego się w kółko | (odcinek w przygotowaniu) |
+| [`bezpieczenstwo/`](bezpieczenstwo/) | 12 nawyków bezpiecznego budowania z AI: PDF ze zdaniami do wklejenia do AI i blok do CLAUDE.md / AGENTS.md | „Jak zabezpieczyć apkę zrobioną z AI” |
 
 Każdy folder ma własny `README.md` z instrukcją krok po kroku.
 
